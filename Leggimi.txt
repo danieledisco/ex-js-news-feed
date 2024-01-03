@@ -1,0 +1,12 @@
+Nella directory 'Soluzione con Select' è
+implementata la Milestone utilizzando però
+come select una funzione normale dell'html.
+Tutte le peculiarità mostrate nel video non
+accadevano.
+
+Nella directory 'Soluzione con Custom Select'
+è stata praticamente implementata una select
+manualmente in modo da poter implementare le
+funzionalità riportate nel video.
+Ovviamente la combinazione delle select continua
+a funzionare.
