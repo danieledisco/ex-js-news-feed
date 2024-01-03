@@ -2,11 +2,43 @@ Nella directory 'Soluzione con Select' è
 implementata la Milestone utilizzando però
 come select una funzione normale dell'html.
 Tutte le peculiarità mostrate nel video non
-accadevano.
+sono presenti.
 
 Nella directory 'Soluzione con Custom Select'
 è stata praticamente implementata una select
-manualmente in modo da poter implementare le
+'a mano' in modo da poter implementare le
 funzionalità riportate nel video.
 Ovviamente la combinazione delle select continua
 a funzionare.
+
+La soluzione più pulita è la prima.
+
+La seconda è stata una serie di tentativi in cui
+in un primo momento, si tentata di agire sulla selec.
+Alla fine, dopo tanto tentare, cercare e provare, 
+ci si è resi conto che, nel video, quella non
+era una select tradizionale (almeno credo) ed
+allora è stata creata questa custom selec.
+
+Non è "esattamente" come quella del video, 
+ma è approssimazione molto buona.
+
+La differenza è che la select implemetata si comporta come una 
+select tradizionale, quella del video invece fa nascere
+il dropdown menu in modo che nella selezione della
+select appaia la voce del dropdown menu: quindi
+a seconda della voce il dropdown scorre in alto e in basso.
+
+I file js della seconda soluzione non sono come quelli della 
+prima. A volte sono presenti duplicati di codice ed
+implementazioni non necessarie e le funzioni non hanno tutte
+i commenti.
+
+E' stato un procedere in modo testardo per raggiungere il 
+risultato che, salvo imprevisti, sembra essere stato raggiunto.
+
+PS: Idee su come far salire su e giù il drop down menu ce ne sono
+ma non si pensa che farebbe una grande differenza.
+
+Grazie per l'attenzione.
+
