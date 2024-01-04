@@ -1,24 +1,5 @@
 /**
- * Lista delle funzioni presenti
- * 
- * function dateUS2EU(date)                             line 27
- * function displayPage(array, text)                    line 45
- * function createMarkupNews(item)                      line 112
- * function displayNewsInSelect(item)                   line 147
- * function generateTagsElement(item)                   line 166
- * function extractTags(item)                           line 196
- * function eliminateArrayDuplicate(inArray)            line 214
- * function funcBook(bookNews)                          line 238
- * function collectNewsBookmarked()                     line 261
- * function generateSelect()                            line 281
- * function generateCheckBox()                          line 316
- * function generateNoNewsAvailable()                   line 338
- * function selectForLoop(text)                         line 354
- * function generateBastartdSelect()                    
- */
-
-/**
- * dateUS2EU 
+ * dateUS2EU(date) 
  * Funzione per trasformare la data dal formato anglosassone (yyy-mm-dd) in 
  * in quello europeo (dd/mm/yyyy)
  * 
@@ -37,7 +18,7 @@ function dateUS2EU(date)
 }
 
 /**
- * displayPage
+ * displayPage(array, text)
  * Questa funzione mostra le news in magina nella prima fase
  * iniziale, quando la pagina vieme aperta
  * @param {onjects} array 
@@ -102,7 +83,7 @@ function displayPage(array, text)
 
 
 /**
- * createMarkupNews
+ * createMarkupNews(item)
  * A paretire dal markup che dovrebbe avere una news,
  * si genera l'elemento della DOM usando come parametri le varie proprietà
  * dell'oggetto (news) in ingresso.
@@ -138,11 +119,11 @@ function createMarkupNews(item)
 }
 
 /**
- * displayNewsInSelect
+ * displayNewsInSelect(item)
  * Funzione che accetta in ingresso 
  * un elemento dell'array news e 
- * ne costruiche prima il markup e poi la sezione tags
- * infine questi elementi sono agganciati ak main
+ * ne costruisce prima il markup e poi la sezione tags
+ * infine questi elementi sono agganciati al main
  * @param {object} item 
  */
 function displayNewsInSelect(item)
@@ -157,8 +138,8 @@ function displayNewsInSelect(item)
 
 
 /**
- * generateTagsElement
- * Questa funzione creal l'ultima sezione delle news ossia la 
+ * generateTagsElement(item)
+ * Questa funzione crea l'ultima sezione delle news ossia la 
  * parte relativa ai tags
  * Accetta in ingresso la news e sulla base dei suoi tags li inserisce in pagina 
  * @param {object} item è uno degli elementi di news
@@ -188,7 +169,7 @@ function generateTagsElement(item)
 
 
 /**
- * extractTags
+ * extractTags(item)
  * Data una news (item), ne estrae tutti i suoi tags e li restituisce
  * in un array di stringhe outARray
  * @param {object} item 
@@ -205,7 +186,7 @@ function extractTags(item)
 }
 
 /**
- * eliminateArrayDuplicate
+ * eliminateArrayDuplicate(inArray)
  * Questa funzione processa l'array di stringhe in ingresso e ne elimina
  * i duplicati. L'array restituito contiene gli elementi in ingresso ma con 
  * una sola occorrenza.
@@ -225,10 +206,9 @@ function eliminateArrayDuplicate(inArray)
 }
 
 /**
- * funcBook
+ * funcBook(bookNews)
  * Funzione invocata quando si fa click con il mouse
- * sull'icona del bookmark della news per renderla la news
- * salvata
+ * sull'icona del bookmark della news per renderla la news salvata.
  * Tramite la funzionalità del data-attribute, è possibile risalire
  * all'id della news che rispetto all'indice dell'array delle news 
  * ha un'unità in più.
@@ -244,8 +224,7 @@ function funcBook(bookNews)
     console.log('cliccato ' + idNews);
 
     // Recuperiamo il valore della slect per definire quali elementi visualizzare
-    //text = selectEl.options[selectEl.selectedIndex].text;
-    text = tagsObj[indexTagSelected].tag;
+    text = newsTags[indexTagSelected];
     // Rendiamo true la proprietà bookmarked
     news[idNews-1].bookmarked = true;
     
@@ -257,7 +236,7 @@ function funcBook(bookNews)
 }
 
 /**
- * collectNewsBookmarked
+ * collectNewsBookmarked()
  * Funzione che ogni volta cancella e rinizializza
  * l'array contenente gli indici delle news salvate ()
  */
@@ -275,42 +254,7 @@ function collectNewsBookmarked()
 }
 
 /**
- * generateSelect
- * Funzione che crea la select.
- * Prima si costruise la label 'Filtra per tags:'
- * poi la select a cui si da un id e poi si agganciano tutte le options
- * con i vari nomi estratti dalle news (più la vece all ed alcune tags non presenti)
- */
-function generateSelect()
-{
-    // Sezione label
-    const labelElement = document.createElement('div');
-    labelElement.className = "labelSelect";
-    labelElement.innerHTML += "Filtra per Tags:";
-    selectBoxEl.append(labelElement); 
-    
-    // Sezione select
-    selectEl = document.createElement('select');
-    selectEl.id = 'selectType';
-    
-    // Creazione ed aggancio all'elemento select delle options corrispondenti alla lista delle tags
-    for(let i=0; i<newsTags.length; i++)
-    {
-       	// Creiamo option della select
-	    const opt = document.createElement("option");
-	    // Valorizziamo value con l'indice i del for
-	    opt.value = i;
-	    // Inseriamo l'elemento della select
-	    opt.innerHTML = newsTags[i];
-
-	    // Agganciamo la option alla select creata
-	    selectEl.appendChild(opt); 
-    }
-    selectBoxEl.appendChild(selectEl);
-}
-
-/**
- * generateCheckBox
+ * generateCheckBox()
  * Funzione che genera la checkbox.
  * Prima si genera la checkbox a cui si aggiunge un id
  * ed un valore di inizializzazione poi 
@@ -333,7 +277,7 @@ function generateCheckBox()
 }
 
 /**
- * generateNoNewsAvailable
+ * generateNoNewsAvailable()
  * Se a causa delle selezioni fatte non vi siano news da visualizzare, 
  * questa funzione avvisa l'utente tramita la dicitura:
  * 'Nessuna news per la selezione effettuata' 
@@ -347,7 +291,7 @@ function generateNoNewsAvailable()
 }
 
 /**
- * selectForLoop
+ * selectForLoop(text)
  * Funzione che considerando il valore selezionato dalla select 
  * (passato in input) e se la checkbox è selezionata oppure no,
  * decide se visualizzare o meno un elemento in pagina sulla
@@ -374,7 +318,7 @@ function selectForLoop(text)
         }
         // Se
         // select       -> all
-        // checkbox     -> not selectef
+        // checkbox     -> not selected
         // Si visualizza in pagina e si incrementa numNewsDisplayed
         else if (text === 'all' && !checkEl.checked) 
         {
@@ -383,7 +327,7 @@ function selectForLoop(text)
         }
         else 
         {
-            // Siamo nel caso in cui la select ha una tag singola
+            // Siamo nel caso in cui la select ha una tag diversa da all
     
             // Si estraggono tutte le tag dalla news
             const tags = extractTags(obj);
@@ -423,22 +367,35 @@ function selectForLoop(text)
     }
 }
 
-
-function generateBastardSelect(tags)
+/**
+ * generateCustomSelect()
+ * Funzione che crea la custom select.
+ */
+function generateCustomSelect()
 {
-    // Sezione label
+    /**
+     * Si crea l'elemento label e si valorizza e lo si appende a selectBoxEl
+     */
     const labelElement = document.createElement('div');
     labelElement.className = "labelSelect";
     labelElement.innerHTML += "Filtra per Tags:";
     selectBoxEl.append(labelElement); 
-
+    
+    /** 
+     * - Nel file scripts.js si costruisce il container per la finestrella della select che conterrà la voce selezionata e
+     *      l'icona della freccia in giù (cSelectedEl)
+     * - Si costruisce il container dell'intera custom select: containerSelectEl
+     * - Quindi si crea l'elemento che visualizza la selezione in pagina: slectedEl e lo si valorizza con il valore "all"
+     *      quando l'applicazione parte la custom select avrà come selezione "all"
+     * - Si crea l'icona della freccia in giù tipica delle select selectedElIcon
+     * - Si agganciano selectedEl e selectedIconEl al loro container cSelectedEl e questo ultimo si aggancia a l'intero
+     *      container della select containerSelectEl. Questo ultimo di aggancia a selectBox presente nell'html
+     */
     containerSelectEl = document.createElement('div');
    
     const selectedEl = document.createElement('div');
     selectedEl.id = 'idSelected';
-   /*  selectEl.style.width = '100%'; */
     selectedEl.innerHTML += 'all';
-
 
     const selectedElIcon = document.createElement('i');
     selectedElIcon.classList.add('fa-solid')
@@ -449,8 +406,24 @@ function generateBastardSelect(tags)
     containerSelectEl.appendChild(cSelectedEl);
     selectBoxEl.appendChild(containerSelectEl);
 
-   
-  
+    /**
+     * - Si crea il container del dropdowm menu e gli si aggiunge un id
+     * - Per tutti i tags presenti in newsTags si creano dei container
+     *      per contenere il tag stesso ed una eventuale icona di spunta
+     *      per indixare la selezione attuale nel dropdouw menu
+     * - Per ognuno di questi container si attribuisce un identifier costruito come:
+     *      'id'+i in questo modo + facilmente richiamabile per cambiare il suo background
+     * - Si crea poi l'elemento che conterrà la spunta
+     * - Quindi si costruise l'icona di spunta. Anche a questa di attribuise un identifier simile
+     *      al precedente dei container 'ic'+i per poterli individuare e renderli visibili o invisibili
+     * - La selezione degli elementi allora è:
+     * 
+     *          containerTagsBoxEl 
+     *                  tagsBoxEl 
+     *                  tagsBoxCheckEl 
+     *                          iconEl
+     * - Si attacca tutto a containerTagsBoxEl
+     */
     containerTagsEl = document.createElement('div');
     containerTagsEl.id = 'containerTags';
 
@@ -461,7 +434,7 @@ function generateBastardSelect(tags)
         containerTagsBoxEl.id = 'id' + i;
         const tagsBoxEl = document.createElement('div');
         tagsBoxEl.className = 'tagsBox';
-        tagsBoxEl.innerText = tagsObj[i].tag;
+        tagsBoxEl.innerText = newsTags[i];
         containerTagsBoxEl.appendChild(tagsBoxEl);
 
         const tagsBoxCheckEl = document.createElement('div');
@@ -471,9 +444,21 @@ function generateBastardSelect(tags)
         iconEl.classList.add('fa-solid');
         iconEl.classList.add('fa-check');
         iconEl.id = 'ic' + i;
-
         tagsBoxCheckEl.appendChild(iconEl);
+        containerTagsBoxEl.appendChild(tagsBoxCheckEl);
+        containerTagsEl.appendChild(containerTagsBoxEl)
 
+        /**
+         * A questo punto agli elementi tagsBoxEl si aggiungono gli eventi
+         *      click       ==> quando si effettua una selezione
+         *      mouseover   ==> quando si scorre con il mouse nel dropwoun menu
+         * Nel primo caso si valorizza indexTagSelected con la i del for, 
+         *      si cambia aspetto al corrispondente container del tag
+         *      fondo arancione e scritte bianche e si nasconde tutto
+         * 
+         * Nel secondo caso si cambia aspetto al corrispondente tags su
+         *      cui ci si trova
+         */
         tagsBoxEl.addEventListener('click',function()
         {
             indexTagSelected = i;
@@ -484,79 +469,27 @@ function generateBastardSelect(tags)
             indextagsMouseOver = i;
             changeCSS_tagsBoxOnMouseOver(indextagsMouseOver);
         });
-
-        containerTagsBoxEl.appendChild(tagsBoxCheckEl);
-        containerTagsEl.appendChild(containerTagsBoxEl)
     }
-  
+    /**
+     * Finito il loop si aggancia containerTagsEl a selectBoxEl
+     */
     selectBoxEl.appendChild(containerTagsEl);
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-/*         const El = createMarkupTag(newsTags[i],i);
-        if (i == 0)
-        {
-            El.style.backgroundColor = 'orange';
-            El.style.color = 'white';
-        }
-        containerTagsEl.appendChild(El);
-   }
-   
- 
-    containerSelectEl.appendChild(containerTagsEl)
- 
-    selectBoxEl.appendChild(containerSelectEl);
-    
-
-}
-*/
-
-function createMarkupTag(item, index)
-{
-    containerTagsBoxEl = document.createElement('div');
-    containerTagsBoxEl.className = 'containerTagsBox'
-    const markupTag = 
-    `
-        <div class="tagsBox" onclick=funcTags(this) onmouseover = funcOver(this) data-id=${index}>
-        ${item}
-        </div>
-        <div class="tagsBoxCheck">
-            <i class="fa-solid fa-check"></i>
-        </div>    
-    `
-    containerTagsBoxEl.innerHTML += markupTag;
-    return containerTagsBoxEl;
-}
-
-function funcTags(tagsBox)
-{
-    let index = tagsBox.getAttribute("data-id");
-    console.log('index click = ' + index);
-}
-
-function funcOver(tagsBox)
-{
-    let index = tagsBox.getAttribute("data-id");
-    console.log('index over = ' + index);
-}
-
+/**
+ * changeCSS_tagsBoxOnMouseOver(index)
+ * Funzione che cambia aspetto agli elementi presenti nel dropdown menu
+ * L'elemento in questione è individuato del parametro di ingresso index.
+ * Quando il mouse ci passa sopra il fondo diventa arancione e le scritte bianche
+ * Tutte le altre sono fondo quello del dropdown menu e scritte nere
+ * Nel loop quando si capita sulla tag selezionata la spunta è visibile altrimenti è nascosta
+ * @param {number} index 
+ */
 function changeCSS_tagsBoxOnMouseOver(index)
 {
-    for (let i=0; i<tagsObj.length; i++)
+    for (let i=0; i<newsTags.length; i++)
     {
-        
         const elem = document.getElementById('id'+i);
         const icon = document.getElementById('ic'+i)
         if (index == i)
@@ -574,16 +507,28 @@ function changeCSS_tagsBoxOnMouseOver(index)
            icon.style.visibility = 'visible'
         else
             icon.style.visibility = 'hidden'
-
-
     }
 }
 
+/**
+ * changeCSS_tagsBoxOnMouseClic(index)
+ * QUesta funzione agisce nel momento che si effettua una selezione di un tag nel
+ * dropdown menu.
+ * Agisce sia a livello di dropdown menu si a livello complessivo di pagina.
+ * Il parametro di ingresso inndex rappresenta l'indice vel vettore dei tags selezionato
+ * @param {number} index 
+ */
 function changeCSS_tagsBoxOnMouseClic(index)
 {
-    for (let i=0; i<tagsObj.length; i++)
+    /**
+     * Prima parte che agisce nel dropdown menu
+     * - Vengono individuati i container delle tags e le icone di spunta
+     * - Sulla base di index si cambia colore al fondo ed al testo
+     * - Si nasconde tutto
+     * - Si cambia nella finestrella della select in pagina il testo con la nuova selezione
+     */
+    for (let i=0; i<newsTags.length; i++)
     {
-        
         const elem = document.getElementById('id'+i);
         const icon = document.getElementById('ic'+i)
         if (index == i)
@@ -596,8 +541,6 @@ function changeCSS_tagsBoxOnMouseClic(index)
             elem.style.color = 'black';
             elem.style.backgroundColor = 'lightgray';    
         }
-
-
         icon.style.visibility = 'hidden';
         elem.style.visibility = 'hidden';
         containerTagsEl.style.visibility = 'hidden';
@@ -605,21 +548,19 @@ function changeCSS_tagsBoxOnMouseClic(index)
         selectedElement.innerHTML = '';
         selectedElement.innerHTML += newsTags[index];
     }
-    // Cancelliamo il DOM
-    mainElement.innerHTML = "";
 
-    // Inizializiammo displayed a 0
-    numNewsDisplayed = 0;
-   
-    // Selezioniamo l'attuale voce del select
-    // text = selectEl.options[selectEl.selectedIndex].text;
-    text = tagsObj[indexTagSelected].tag;       
-    
-    // Sulla base di cosa indica la select e della  checkbox
-    // selectForLoop decide quante e quali news inseirre in pagina
+    /**
+     * Seconda parte che agisce a livello di pagina complessiva
+     * - Si cancella la pagina
+     * - Si inizializza il numero di new mostrate a 0
+     * - Si seleziona l'attaule tags (indextagSelected coincide con index ma rende meglio l'idea) 
+     * - Sulla base della selct e della checkbox la funzione selectForLoop mostra le news in pagina
+     * - Se non ci sono news lo si comunica all'utente
+     */
+    mainElement.innerHTML = "";
+    numNewsDisplayed = 0;   
+    text = newsTags[indexTagSelected];       
     selectForLoop(text);
-   
-    // Se non ci sono news lo si comunica all'utente
     if (numNewsDisplayed == 0) 
     {
         generateNoNewsAvailable();

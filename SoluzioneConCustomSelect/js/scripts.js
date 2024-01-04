@@ -115,16 +115,47 @@ const news =
 // Numero di news mostrate in pagina
 let numNewsDisplayed;
 
-// La voce corrente della selelct
+// La voce selezionata della selelct
 let text;
 
-// Indive tag selezionato
+// Indice tag selezionato
 let indexTagSelected = 0;
+
+// Indice tag su cui si sta muovendo il mouse
 let indextagsMouseOver;
+
+// Contenitore della custom select
 let containerTagsBoxEl;
 
 // Elemento  main
 const mainElement = document.getElementById('mainSite');
+
+// Array che conterrà gli indici delle news "bookmarked"
+let newsBookmarked = [];
+
+// Elemento selectBox che conterrà tutta la cutmo select (elemento selezionato visibile in pagina e tutto il dropdown menu)
+const selectBoxEl = document.getElementById('selectBox')
+
+// Contenitore per la sola fionestrella visibile in pagina della custo mselect
+const cSelectedEl = document.createElement('div');
+cSelectedEl.id = 'containerSelected';
+cSelectedEl.style.border = '2px solid black';
+
+// Contenitore dell'intero dropdown menu della custom select
+let containerTagsEl;
+
+// Container dell'elemento selezionato nel dropdown menu
+let containerSelectEl;
+
+// Elemento che contiene la selezione della custom select ed è mostrata in pagina
+let selectedEl;
+
+// ELemento checkBoxEl che conterrà checkbox e label
+const checkBoxEl = document.getElementById('checkBox')
+
+// Elemento checkbox
+let checkEl;
+
 
 // Visualizziamo in pagina l'array news ed inizializziamo a
 // news.length numNewsDisplayed 
@@ -156,101 +187,15 @@ newsTags.push('biologia')
 newsTags.unshift('all');
 
 
-// Creiamo un array di object che conengono le tags
-let tagsObj = [];
-
-for ( let i=0; i<newsTags.length; i++)
-{
-    let tagObj;
-    if (i == 0)
-    {
-        tagObj =
-        {
-            tag: newsTags[i],
-            color: 'white',
-            bgColor: 'orange',
-            tick: 'hidden'
-        }
-    }
-    else
-    {
-        tagObj =
-        {
-            tag: newsTags[i],
-            color: 'black',
-            bgColor: 'lightgray',
-            tick: 'hidden'
-        }
-    }
-    tagsObj.push(tagObj);
-}
-
-console.log(tagsObj);
-
-
-
-// Array che conterrà gli indici delle news "bookmarked"
-let newsBookmarked = [];
-
-// Elemento selectBox che conterrà label e select
-const selectBoxEl = document.getElementById('selectBox')
-
-
-const cSelectedEl = document.createElement('div');
-cSelectedEl.id = 'containerSelected';
-cSelectedEl.style.border = '2px solid black';
-
-let containerTagsEl;
-
-// Elemento Container selezionato
-let containerSelectEl;
-
-// Elemento select
-let selectedEl;
-
 // creiamo l'elemento select
-// generateSelect();
-generateBastardSelect();
+generateCustomSelect();
 
-// ELemento checkBoxEl che conterrà checkbox e label
-const checkBoxEl = document.getElementById('checkBox')
-
-// Elemento checkbox
-let checkEl;
 
 // Creiamo l'elemento checkbox
 generateCheckBox()
 
-
 /**
- * Event Listener per la select
- */
-
-/* selectEl.addEventListener('change', function () 
-{
-    // Cancelliamo il DOM
-    mainElement.innerHTML = "";
-
-    tagsObj[indexTagSelected].tick = 'visible';
-
-    // Inizializiammo numNewsDisplayed a 0
-    numNewsDisplayed = 0;
-
-    // Selezioniamo l'attuale voce del select
-    //text = selectEl.options[selectEl.selectedIndex].text;
-    text = tagsObj[indexTagSelected].tag;
-        
-    // Sulla base di cosa indica la select e della  checkbox
-    // selectForLoop decide quante e quali news inseirre in pagina
-    selectForLoop(text);
-
-    // Se non ci sono news lo si comunica all'utente
-    if (numNewsDisplayed == 0) 
-    {
-        generateNoNewsAvailable();
-    }
-}
-)
+ * Event Listener per la custom select
  */
 cSelectedEl.addEventListener('click', function()
 {
@@ -264,11 +209,6 @@ cSelectedEl.addEventListener('click', function()
     }
 })
 
-
-
-
-
-
 /**
  * Event Listener per la checkbox
  */
@@ -278,8 +218,7 @@ checkEl.addEventListener('change', function ()
     mainElement.innerHTML = "";
 
     // Selezioniamo l'attuale voce del select
-//    const text = selectEl.options[selectEl.selectedIndex].text;
-    const text = tagsObj[indexTagSelected].tag;
+    const text = newsTags[indexTagSelected];
 
     // Inizializziamo numNewsDisplayed a 0
     numNewsDisplayed = 0;
