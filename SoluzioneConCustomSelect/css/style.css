@@ -164,6 +164,7 @@ footer
     padding-left: 0.5rem;
     padding-right: 5rem;
     color: black;
+    width: 130px;
 }
 
 #selectBox
@@ -175,13 +176,13 @@ footer
 #containerTags
 {
     position: absolute;
-    left: 168px;
+    left: 169px;
     top: 27px;
     background-color: lightgray;
     color: black;
     visibility: hidden;
     border-radius: 10px;
-    width: 140px;
+    width: 164px;
 
 }
 

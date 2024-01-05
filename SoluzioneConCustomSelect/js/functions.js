@@ -401,6 +401,7 @@ function generateCustomSelect()
     selectedElIcon.classList.add('fa-solid')
     selectedElIcon.classList.add('fa-chevron-down')
     selectedElIcon.style.paddingRight = '0.5rem';
+    selectedElIcon.style.width = '30px';
     cSelectedEl.appendChild(selectedEl);
     cSelectedEl.appendChild(selectedElIcon);
     containerSelectEl.appendChild(cSelectedEl);
