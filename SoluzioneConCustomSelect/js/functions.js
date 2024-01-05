@@ -495,12 +495,14 @@ function changeCSS_tagsBoxOnMouseOver(index)
         if (index == i)
         {
             elem.style.color = 'white';
-            elem.style.backgroundColor = 'orange';    
+            elem.style.backgroundColor = 'orange';
+            icon.style.color = 'white';    
         }
         else
         {
             elem.style.color = 'black';
-            elem.style.backgroundColor = 'lightgray';    
+            elem.style.backgroundColor = 'lightgray'; 
+            icon.style.color = 'black';    
         }
 
         if(i == indexTagSelected)

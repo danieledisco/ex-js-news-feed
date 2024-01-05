@@ -206,6 +206,12 @@ cSelectedEl.addEventListener('click', function()
     {
         const elem = document.getElementById('id'+i)
         elem.style.visibility = 'visible';
+        if( i == indexTagSelected)
+        {
+            elem.style.backgroundColor = 'orange';
+            elem.style.color = 'white';
+            icon.style.color = 'white';
+        }
     }
 })
 
